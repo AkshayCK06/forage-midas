@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.annotation.DirtiesContext;
 
+
 @SpringBootTest
 @DirtiesContext
 @EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
@@ -15,7 +16,7 @@ class TaskTwoTests {
     static final Logger logger = LoggerFactory.getLogger(TaskTwoTests.class);
 
     @Autowired
-    private KafkaProducer kafkaProducer;
+    public KafkaProducer kafkaProducer;
 
     @Autowired
     private FileLoader fileLoader;
@@ -26,6 +27,7 @@ class TaskTwoTests {
         for (String transactionLine : transactionLines) {
             kafkaProducer.send(transactionLine);
         }
+
         Thread.sleep(2000);
         logger.info("----------------------------------------------------------");
         logger.info("----------------------------------------------------------");
@@ -37,5 +39,4 @@ class TaskTwoTests {
             logger.info("...");
         }
     }
-
 }

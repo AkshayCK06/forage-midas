@@ -1,9 +1,11 @@
 package com.jpmc.midascore.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.*;
 
 @Entity
-public class UserRecord {
+public class UserRecord implements Serializable{
 
     @Id
     @GeneratedValue()
